@@ -18,7 +18,7 @@ class GP():
     def setcuda(self, cuda):
         self.cuda = cuda
    
-    def testStateSpaceCorrelation(self, X, Y, m=3, tau=1, cuda=0):
+    def process(self, X, Y, m=3, tau=1, cuda=0):
         ''' X is the time series to cross map to
             Y is a batch of time series to see how well they crossmap to X
             m is the embedding dimension
@@ -57,10 +57,12 @@ class GP():
     
         for yi, yy in zip(yar,yp):
             # minimize euclidean distance
-            ytemp = yi.matmul(torch.inverse(yi.T.matmul(yi)).matmul(yi.T).matmul(xi))
+            W = torch.inverse(yi.T.matmul(yi)).matmul(yi.T).matmul(xi)
+            ytemp = yi.matmul(W)
+            ytempp = yy.matmul(W)
             ml = []
             kl = []
-            m, k, mlogp  = self.forward(xi, xp, yi, yy)
+            m, k, mlogp  = self.forward(xi, xp, ytemp, ytempp)
             m = m.T
             m[m!=m] = 0
             with torch.no_grad():
@@ -210,9 +212,9 @@ class GP():
 
         return posteriormu, posteriorK, marglog
 
-def testCause(postQuad1, postK1, postQuad2, postK2, margLog1Y, margLog2X):
+def testCause(postQuad1, postK1, postQuad2, postK2, margLog1X=1, margLog2X=1):
     '''
-        Quad means the quadrature of the exponential in the guassian
+        Quad means the quadratic of the exponential in the guassian
         distribution, for example: (mu1 - X1)^TpostK1^-1(mu1 - X1)
         returns the log of the likelihood ratio
     '''
