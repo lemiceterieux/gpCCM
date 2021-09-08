@@ -1,9 +1,4 @@
 import numpy as np
-import numba as nb
-import dcor
-import scipy.stats as stats
-import scipy.special as sp
-import minepy
 import torch
 torch.set_default_tensor_type(torch.cuda.FloatTensor)
 
