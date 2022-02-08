@@ -198,10 +198,10 @@ class GP():
             lni = (1/(lamb+noise*eye).diag()).diag()
             Qm = Km + Knm.matmul(lni).matmul(Knm.T)
             stdMat= torch.inverse(Km) - torch.inverse(Qm)
-            muMatr = torch.inverse(Qm).matmul(Knm).matmul(torch.inverse(lamb + self.noise*eye)).matmul(ip)
+            muMat = torch.inverse(Qm).matmul(Knm).matmul(torch.inverse(lamb + self.noise*eye)).matmul(ip)
             # Covariance update
             posteriorK += [(tk - inptk.T.matmul(stdMat).matmul(inptk) + self.noise*eye).slogdet()[1].cpu()]
-            posteriormu += inptk.T.matmul(muMat)
+            posteriormu += inptk.T.matmul(muMat).cpu().numpy()
 
         posteriorK = torch.stack(posteriorK)
         posteriormu = torch.stack(posteriormu)
