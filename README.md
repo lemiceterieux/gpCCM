@@ -27,7 +27,23 @@ estimate results, can be found in Physical Review E:
 }
 ```
 
-The variational posterior method we submitted to a conference. I think we can
-post it to the arxiv. Whenever we do that, we'll post below the citation link.
+The variational posterior method we submitted to a conference. For the time
+being, a link to the article can be found on arxiv:
+
+```
+@ARTICLE{ghouse2022parsim,
+       author = {{Ghouse}, Ameer and {Valenza}, Gaetano},
+        title = "{Inferring Parsimonious Coupling Statistics in Nonlinear Dynamics with Variational Gaussian Processes}",
+      journal = {arXiv e-prints},
+     keywords = {Statistics - Methodology},
+         year = 2022,
+        month = mar,
+          eid = {arXiv:2203.03868},
+        pages = {arXiv:2203.03868},
+archivePrefix = {arXiv},
+       eprint = {2203.03868},
+ primaryClass = {stat.ME},
+}
+```
 
 Cheers!
