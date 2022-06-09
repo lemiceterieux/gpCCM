@@ -9,7 +9,7 @@ probability distribution on each place in a (reconstructed) state space and calc
 evidence for a time series Y being caused by X through a conditioned
 probability. This reduces to a comparison of a posteriori entropy difference
 between H(X|Y) and H(Y|X). If H(X|Y) > H(Y|X), that says that Y provided less
-information for X than X did for Y, meaning coupling direction goes from X to Y.
+information about X than X did for Y, meaning coupling direction goes from Y to X.
 
 If you use this work, please cite our papers. The first one, for the point
 estimate results, can be found in Physical Review E:
